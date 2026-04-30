@@ -1,0 +1,423 @@
+/* Devopsdays Raleigh, Apr 30 - May 1, 2026 — Snowflake brand dark theme
+ * Palette: Snowflake Navy + Snowflake Blue
+ * Font: Inter via Google Fonts in index.html
+ */
+
+:root {
+  /* Snowflake brand palette */
+  --bg:        #0B2B4E;  /* Snowflake navy */
+  --panel:     #11395F;  /* lighter navy panel */
+  --panel-2:   #0E3255;
+  --orange:    #29B5E8;  /* Snowflake blue — primary accent */
+  --cyan:      #C9EBF7;  /* Snowflake ice — secondary accent */
+  --purple:    #1A8BC7;  /* mid Snowflake blue */
+  --ink:       #FFFFFF;
+  --muted:     #9ca3af;
+  --rule:      #1D4E73;
+  --good:      #10B981;  /* emerald green */
+  --bad:       #EF4444;  /* red */
+}
+
+html, body { background: var(--bg); }
+
+.reveal {
+  font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+  font-feature-settings: "ss01", "cv11";
+  font-size: 26px;
+  color: var(--ink);
+  background: var(--bg);
+}
+
+/* Headings */
+.reveal h1, .reveal h2, .reveal h3, .reveal h4 {
+  font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+  color: var(--ink);
+  text-transform: none;
+  letter-spacing: -0.02em;
+  font-weight: 700;
+  margin: 0 0 0.4em 0;
+}
+.reveal h1 { font-size: 3.4em; line-height: 1.05; }
+.reveal h2 {
+  font-size: 2.2em; line-height: 1.1;
+  display: inline-block;
+  padding-bottom: 0.25em;
+  border-bottom: 4px solid var(--orange);
+  margin-bottom: 0.6em;
+}
+.reveal h3 { font-size: 1.25em; color: var(--orange); font-weight: 600; }
+.reveal p, .reveal li { color: var(--ink); }
+.reveal strong { color: var(--orange); font-weight: 700; }
+.reveal em { color: var(--muted); font-style: normal; }
+.reveal a { color: var(--cyan); text-decoration: none; }
+
+/* Slide container — left-aligned re:Invent style */
+.reveal .slides section {
+  text-align: left;
+  padding: 0.4em 1em;
+}
+.reveal .slides section.center { text-align: center; }
+
+/* ───────────── Title slide ───────────── */
+section.title-slide {
+  background:
+    linear-gradient(135deg, rgba(11,43,78,0.92) 0%, rgba(17,57,95,0.80) 50%, rgba(41,181,232,0.18) 100%),
+    url("../assets/backgrounds/title.png") center/cover no-repeat;
+  color: var(--ink);
+  text-align: left;
+  padding: 1em 1.4em;
+}
+section.title-slide .eyebrow {
+  display: inline-block;
+  font-size: 0.6em; letter-spacing: 0.28em; text-transform: uppercase;
+  color: var(--orange); font-weight: 700;
+  border-left: 4px solid var(--orange); padding-left: 0.6em;
+  margin-bottom: 0.6em;
+}
+section.title-slide h1 {
+  font-size: 3.2em; line-height: 1.02; margin: 0.1em 0 0.1em 0;
+  max-width: 18ch;
+}
+section.title-slide h2 {
+  font-size: 1.4em; font-weight: 400; color: var(--muted);
+  border: none; padding: 0; margin-top: 0.2em;
+  text-transform: none; letter-spacing: 0;
+}
+section.title-slide .speakers {
+  margin-top: 1.4em; font-size: 0.75em; color: var(--ink);
+}
+section.title-slide .speakers strong { color: var(--orange); }
+section.title-slide .conf {
+  margin-top: 0.6em; font-size: 0.55em; color: var(--muted);
+  letter-spacing: 0.15em; text-transform: uppercase;
+}
+
+/* ───────────── Section divider ───────────── */
+section.section-divider {
+  background:
+    linear-gradient(135deg, rgba(11,43,78,0.92) 0%, rgba(17,57,95,0.80) 100%),
+    url("../assets/backgrounds/section.png") center/cover no-repeat;
+  text-align: left;
+  padding: 1em 1.6em;
+}
+section.section-divider .numeral {
+  font-size: 12em; line-height: 0.9; font-weight: 800;
+  color: var(--orange); letter-spacing: -0.05em;
+  margin: 0;
+}
+section.section-divider h2 {
+  font-size: 2.6em; border: none; margin-top: -0.2em; padding: 0;
+  max-width: 22ch;
+}
+section.section-divider .teaser {
+  color: var(--muted); font-size: 1.1em; margin-top: 0.4em;
+  max-width: 38ch;
+}
+
+/* ───────────── Pillars (3- or 4-up icon grids) ───────────── */
+.pillars {
+  display: grid; gap: 1.2em;
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: 0.6em;
+}
+.pillars.four  { grid-template-columns: repeat(4, 1fr); }
+.pillars.five  { grid-template-columns: repeat(5, 1fr); }
+.pillar {
+  background: var(--panel);
+  border-top: 3px solid var(--orange);
+  border-radius: 6px;
+  padding: 0.9em 1em 1em 1em;
+}
+.pillar .icon {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 44px; height: 44px; border-radius: 50%;
+  background: rgba(255,153,0,0.15); color: var(--orange);
+  font-size: 1.3em; font-weight: 700;
+  margin-bottom: 0.4em;
+}
+.pillar h3 { margin: 0.2em 0 0.3em 0; color: var(--ink); font-size: 1em; }
+.pillar p, .pillar li { font-size: 0.78em; color: var(--muted); margin: 0.2em 0; }
+.pillar ul { list-style: disc; padding-left: 1.2em; }
+
+/* Two-panel layout */
+.cols { display: grid; grid-template-columns: 1fr 1fr; gap: 1.4em; }
+.cols.three { grid-template-columns: repeat(3, 1fr); }
+.panel {
+  background: var(--panel);
+  border-left: 4px solid var(--orange);
+  border-radius: 4px;
+  padding: 0.9em 1.1em;
+}
+.panel h3 { margin-top: 0; }
+.panel ul { padding-left: 1em; }
+.panel li { font-size: 0.85em; line-height: 1.4; color: var(--ink); }
+
+/* Architecture diagram container */
+.arch { display: flex; flex-direction: column; align-items: center; gap: 0.4em; }
+.arch img {
+  max-height: 560px; width: auto;
+  background: #E8F4FA;
+  padding: 1.2em 1.6em;
+  border-radius: 12px;
+  border: 1px solid var(--rule);
+  box-shadow: 0 12px 36px rgba(0,0,0,0.55), 0 0 0 1px rgba(41,181,232,0.2);
+}
+
+/* Title slide GoodRx logo */
+.title-logo { height: 64px; width: auto; margin-bottom: 0.6em; display: block; }
+
+/* Scorecard matrix (slide 9) */
+.reveal table.scorecard-matrix { font-size: 0.78em; }
+.reveal table.scorecard-matrix th,
+.reveal table.scorecard-matrix td { text-align: center; padding: 0.4em 0.5em; }
+.reveal table.scorecard-matrix td:first-child,
+.reveal table.scorecard-matrix th:first-child { text-align: left; }
+.reveal table.scorecard-matrix td.c { color: var(--good); font-weight: 800; font-size: 1.1em; }
+.reveal table.scorecard-matrix td.x { color: var(--bad);  font-weight: 800; font-size: 1.1em; }
+
+/* Stat callouts (slide 3 — GoodRx context) */
+.stat-callouts { display: flex; gap: 1.2em; margin-top: 1em; }
+.stat-callout {
+  display: flex; flex-direction: column;
+  background: var(--panel); border-left: 4px solid var(--orange);
+  padding: 0.6em 0.9em; border-radius: 4px; flex: 1;
+}
+.stat-callout .num { font-size: 2em; font-weight: 800; color: var(--orange); line-height: 1; }
+.stat-callout .lbl { font-size: 0.7em; color: var(--muted); margin-top: 0.3em; }
+
+/* Score badges */
+.score { display: inline-block; padding: 0.15em 0.7em; border-radius: 999px;
+         font-weight: 700; font-size: 0.85em; }
+.score.bad     { background: var(--bad);    color: #fff; }
+.score.partial { background: var(--orange); color: #16191F; }
+.score.good    { background: var(--good);   color: #16191F; }
+.score.win     { background: var(--orange); color: #16191F; box-shadow: 0 0 0 3px rgba(255,153,0,0.25); }
+
+/* Giant scorecard numeral (slides 7) */
+.big-score {
+  font-size: 5em; font-weight: 800; line-height: 1;
+  color: var(--orange); letter-spacing: -0.03em;
+}
+
+/* Tagline — orange-bordered callout, full width at bottom */
+.tagline {
+  display: block;
+  margin-top: 0.9em;
+  padding: 0.6em 1em;
+  border-left: 4px solid var(--orange);
+  background: var(--panel-2);
+  font-size: 0.95em;
+  color: var(--ink);
+  font-style: normal;
+}
+.tagline.hero {
+  text-align: center;
+  font-size: 1.3em; font-weight: 700; letter-spacing: 0.04em;
+  text-transform: uppercase; color: var(--orange);
+  border: none; background: transparent;
+}
+
+/* Code blocks */
+.reveal pre {
+  box-shadow: none; font-size: 0.5em; width: 100%;
+  background: #0E1116;
+  border-left: 3px solid var(--orange);
+  border-radius: 4px;
+}
+.reveal pre code { padding: 0.8em 1em; color: #E6E6E6; background: transparent; }
+
+/* Tables */
+.reveal table { font-size: 0.7em; border-collapse: collapse; margin: 0.4em 0; width: 100%; color: var(--ink); }
+.reveal table th { background: transparent; color: var(--orange);
+                   padding: 0.5em 0.8em; text-align: left;
+                   border-bottom: 2px solid var(--orange); }
+.reveal table td { padding: 0.45em 0.8em; border-bottom: 1px solid var(--rule); }
+.reveal table tr.win td { background: rgba(255,153,0,0.12); font-weight: 700; }
+
+/* Lists */
+.reveal ul { line-height: 1.4; padding-left: 1.1em; }
+.reveal ul li { margin: 0.2em 0; }
+.reveal ul li::marker { color: var(--orange); }
+
+/* Persistent footer */
+.deck-footer {
+  position: fixed; bottom: 14px; left: 28px; right: 28px;
+  display: flex; justify-content: space-between;
+  font-size: 13px; color: var(--muted);
+  letter-spacing: 0.08em; text-transform: uppercase;
+  pointer-events: none; z-index: 30;
+}
+.deck-footer .left  { color: var(--muted); }
+.deck-footer .right { color: var(--orange); }
+section.title-slide ~ * .deck-footer { display: flex; }
+
+/* Slide number */
+.reveal .slide-number {
+  background: transparent; color: var(--muted);
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: 14px; right: 28px; bottom: 14px;
+}
+
+/* Build/fragment polish */
+.reveal .fragment.fade-in-then-semi-out.visible:not(.current-fragment) { opacity: 0.35; }
+
+/* ───────────── Inline SVG architecture diagrams ───────────── */
+.svg-arch { width: 100%; max-width: 1400px; margin: 0 auto; display: block; }
+.svg-arch .node-rect { fill: var(--panel); stroke: var(--orange); stroke-width: 2; rx: 8; }
+.svg-arch .node-rect.alt { fill: #2A3749; stroke: var(--cyan); }
+.svg-arch .node-label { fill: var(--ink); font-family: Inter, sans-serif; font-size: 16px; font-weight: 600; text-anchor: middle; }
+.svg-arch .node-sub   { fill: var(--muted); font-family: Inter, sans-serif; font-size: 12px; text-anchor: middle; }
+.svg-arch .flow { fill: none; stroke: var(--orange); stroke-width: 2.5; stroke-linecap: round; }
+.svg-arch .badge { fill: var(--orange); }
+.svg-arch .badge-num { fill: #16191F; font-family: Inter, sans-serif; font-size: 18px; font-weight: 800; text-anchor: middle; dominant-baseline: central; }
+
+/* Draw-on animation for flow lines (numeric values — % broken in Chrome/Safari) */
+@keyframes draw-line { to { stroke-dashoffset: 0; } }
+.svg-arch .flow.always {
+  stroke-dasharray: 1500;
+  stroke-dashoffset: 1500;
+}
+.reveal section.present .svg-arch .flow.always {
+  animation: draw-line 1.4s ease-out forwards;
+}
+
+/* Flowing dashes along a path */
+@keyframes flow-dash { to { stroke-dashoffset: -40; } }
+.svg-arch .flow.flowing {
+  stroke-dasharray: 6 6;
+  animation: flow-dash 1.2s linear infinite;
+}
+
+/* Section underline draw-in for h2 */
+@keyframes draw-underline { from { width: 0; } to { width: 100%; } }
+.reveal h2 { position: relative; }
+
+/* Fade-in for whole slides — exclude nested <section> so vertical stacks don't all show at once */
+.reveal .slides section.present > *:not(.deck-footer):not(section) {
+  animation: slide-in 0.5s ease-out both;
+}
+@keyframes slide-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Title slide background drifts in once and stops at center */
+@keyframes drift-bg-once {
+  from { background-position: 0% 50%; }
+  to   { background-position: 50% 50%; }
+}
+section.title-slide {
+  background-size: 200% 200%;
+  animation: drift-bg-once 12s ease-out forwards;
+}
+
+/* Eyebrow tag for content slides (above h2) */
+.eyebrow-tag {
+  display: inline-block;
+  font-size: 0.55em; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--orange); font-weight: 700;
+  border: 1px solid var(--orange); border-radius: 999px;
+  padding: 0.25em 0.9em; margin-bottom: 0.5em;
+}
+
+/* Big-stat hook slide */
+section.stat-hero { text-align: center; padding: 1em 1.4em; }
+section.stat-hero .big-stat {
+  font-size: 11em; line-height: 0.9; font-weight: 800;
+  color: var(--orange); letter-spacing: -0.05em;
+  margin: 0.05em 0;
+}
+section.stat-hero .stat-label {
+  font-size: 1.1em; color: var(--muted);
+  text-transform: uppercase; letter-spacing: 0.18em;
+}
+section.stat-hero .stat-line {
+  font-size: 1.4em; color: var(--ink);
+  margin-top: 0.6em; max-width: 28ch; margin-left: auto; margin-right: auto;
+}
+
+/* Pull-quote slide */
+section.quote-slide {
+  text-align: left; padding: 1em 2em;
+  background:
+    linear-gradient(120deg, rgba(11,43,78,0.93) 0%, rgba(17,57,95,0.80) 100%),
+    url("../assets/backgrounds/quote.png") center/cover no-repeat;
+}
+section.quote-slide blockquote {
+  font-size: 2.0em; line-height: 1.25; font-weight: 600;
+  color: var(--ink); border: none; padding: 0;
+  max-width: 26ch;
+}
+section.quote-slide blockquote::before {
+  content: "\201C"; color: var(--orange); font-size: 2.2em; line-height: 0;
+  vertical-align: -0.4em; margin-right: 0.05em;
+}
+section.quote-slide cite {
+  display: block; margin-top: 1em; font-size: 0.85em;
+  color: var(--orange); font-style: normal;
+  text-transform: uppercase; letter-spacing: 0.14em;
+}
+
+/* Agenda numbers */
+.agenda-num {
+  font-size: 2.4em; font-weight: 800; color: var(--orange);
+  line-height: 1; letter-spacing: -0.03em;
+}
+
+/* Unity Catalog capability pills overlay (Medallion slide) */
+.arch-overlay {
+  position: relative;
+  display: inline-block;
+  background: #E8F4FA;
+  padding: 1.2em 1.6em;
+  border-radius: 12px;
+  border: 1px solid var(--rule);
+  box-shadow: 0 12px 36px rgba(0,0,0,0.55), 0 0 0 1px rgba(41,181,232,0.2);
+}
+.arch-overlay img {
+  display: block;
+  max-height: 560px;
+  width: auto;
+  /* Reset the .arch img styles since the wrapper handles them */
+  background: none;
+  padding: 0;
+  border-radius: 0;
+  border: none;
+  box-shadow: none;
+}
+.uc-capabilities {
+  position: absolute;
+  top: 18%;
+  left: 38%;
+  right: 3%;
+  display: flex;
+  gap: 0.4em;
+  z-index: 10;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.uc-pill {
+  display: inline-block;
+  background: var(--panel);
+  color: #fff;
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: 0.7em;
+  font-weight: 600;
+  padding: 0.6em 1em;
+  border-radius: 6px;
+  border-top: 3px solid var(--orange);
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+  text-align: center;
+  line-height: 1.2;
+}
+
+/* QR placeholder */
+.qr-placeholder {
+  width: 180px; height: 180px;
+  border: 3px dashed var(--orange); border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--muted); font-size: 0.7em; text-align: center;
+  background: var(--panel);
+}
+

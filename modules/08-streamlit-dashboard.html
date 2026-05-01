@@ -22,7 +22,7 @@ FinOps for Snowflake Cortex (AI)
         <a href="04-cortex-code-setup.html" class="nav-link" data-module="04"><span class="num">04</span> CoCo Setup</a>
         <a href="05-ai-sql-hands-on.html" class="nav-link" data-module="05"><span class="num">05</span> SQL Labs</a>
         <a href="06-token-usage-tracking.html" class="nav-link" data-module="06"><span class="num">06</span> Tracking</a>
-        <a href="07-ai-credits-transition.html" class="nav-link" data-module="07"><span class="num">07</span> What's New</a>
+        <a href="07-ai-credits-transition.html" class="nav-link" data-module="07"><span class="num">07</span> Spend Controls</a>
         <a href="08-streamlit-dashboard.html" class="nav-link active" data-module="08"><span class="num">08</span> Dashboard</a>
         <a href="09-closing-note.html" class="nav-link" data-module="09"><span class="num">09</span> Closing</a>
       </div>
@@ -140,7 +140,7 @@ Use Snowflake brand colors: #29B5E8 accent, #0B2B4E dark</pre>
             <li>Hourly Trend Chart</li>
             <li>Function Breakdown</li>
             <li>Model Cost Comparison</li>
-            <li>What's New</li>
+            <li>Spend Controls</li>
             <li>Top Expensive Queries</li>
           </ul>
         </div>
@@ -419,7 +419,7 @@ Use Snowflake brand colors: #29B5E8 accent, #0B2B4E dark</pre>
     <section class="section">
       <div class="callout warn">
         <h5>AI Credits Transition - Update Your Dashboard Queries</h5>
-        <p>Four AI services now have their own <code>SERVICE_TYPE</code> in <code>METERING_DAILY_HISTORY</code>: <code>CORTEX_AGENTS</code>, <code>CORTEX_CODE_CLI</code>, <code>CORTEX_CODE_SNOWSIGHT</code>, and <code>SNOWFLAKE_INTELLIGENCE</code>. The dashboard code below includes a dedicated section to track these new billing types. See <a href="07-ai-credits-transition.html" style="color: var(--sf-blue);">Module 07: What's New</a> for the full breakdown.</p>
+        <p>Four AI services now have their own <code>SERVICE_TYPE</code> in <code>METERING_DAILY_HISTORY</code>: <code>CORTEX_AGENTS</code>, <code>CORTEX_CODE_CLI</code>, <code>CORTEX_CODE_SNOWSIGHT</code>, and <code>SNOWFLAKE_INTELLIGENCE</code>. The dashboard code below includes a dedicated section to track these new billing types. See <a href="07-ai-credits-transition.html" style="color: var(--sf-blue);">Module 07: Spend Controls</a> for the full breakdown.</p>
       </div>
     </section>
 
@@ -875,7 +875,7 @@ st.markdown("""
           <line x1="19" y1="12" x2="5" y2="12"/>
           <polyline points="12 19 5 12 12 5"/>
         </svg>
-        Module 07: What's New
+        Module 07: Spend Controls
       </a>
       <a href="09-closing-note.html" class="nav-btn next">
         Module 09: Closing Note

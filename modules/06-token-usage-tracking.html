@@ -22,7 +22,7 @@ FinOps for Snowflake Cortex (AI)
         <a href="04-cortex-code-setup.html" class="nav-link" data-module="04"><span class="num">04</span> CoCo Setup</a>
         <a href="05-ai-sql-hands-on.html" class="nav-link" data-module="05"><span class="num">05</span> SQL Labs</a>
         <a href="06-token-usage-tracking.html" class="nav-link active" data-module="06"><span class="num">06</span> Tracking</a>
-        <a href="07-ai-credits-transition.html" class="nav-link" data-module="07"><span class="num">07</span> What's New</a>
+        <a href="07-ai-credits-transition.html" class="nav-link" data-module="07"><span class="num">07</span> Spend Controls</a>
         <a href="08-streamlit-dashboard.html" class="nav-link" data-module="08"><span class="num">08</span> Dashboard</a>
         <a href="09-closing-note.html" class="nav-link" data-module="09"><span class="num">09</span> Closing</a>
       </div>
@@ -129,38 +129,7 @@ FinOps for Snowflake Cortex (AI)
     <section class="section">
       <div class="panel">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-md);">
-          <h4 style="margin: 0;">Query 1: My AI Queries in the Last Hour</h4>
-          <span class="badge low">Start Here</span>
-        </div>
-        <p><strong>When to run:</strong> First query every practitioner should run after Module 05 exercises.</p>
-        
-        <div class="code-block">
-          <div class="code-header">
-            <span class="code-lang">SQL</span>
-            <button class="copy-btn"><span>Copy</span></button>
-          </div>
-          <div class="code-content">
-            <pre>SELECT
-    query_id,
-    LEFT(query_text, 120)                       AS query_preview,
-    start_time,
-    ROUND(total_elapsed_time / 1000, 2)         AS seconds,
-    ROUND(credits_used_cloud_services, 6)       AS credits_used
-FROM snowflake.account_usage.query_history
-WHERE start_time    >= DATEADD(hour, -1, CURRENT_TIMESTAMP)
-  AND query_text    ILIKE ANY ('%AI_COMPLETE%', '%AI_SENTIMENT%', '%AI_CLASSIFY%', '%AI_TRANSLATE%', '%AI_SUMMARIZE%', '%AI_EMBED%', '%AI_FILTER%', '%AI_EXTRACT%', '%SNOWFLAKE.CORTEX%')
-  AND user_name     = CURRENT_USER()
-ORDER BY start_time DESC;</pre>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ─── Query 2 ────────────────────────────────────────────────────────── -->
-    <section class="section">
-      <div class="panel">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-md);">
-          <h4 style="margin: 0;">Query 2: AI Credits by Cortex Function</h4>
+          <h4 style="margin: 0;">Query 1: AI Credits by Cortex Function</h4>
           <span class="badge medium">Weekly Review</span>
         </div>
         <p><strong>When to run:</strong> Weekly FinOps review - uses the dedicated <code>CORTEX_AI_FUNCTIONS_USAGE_HISTORY</code> view for accurate AI token credits (not cloud services overhead).</p>
@@ -192,7 +161,7 @@ ORDER BY total_ai_credits DESC;</pre>
     <section class="section">
       <div class="panel">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-md);">
-          <h4 style="margin: 0;">Query 3: Model Cost Comparison</h4>
+          <h4 style="margin: 0;">Query 2: Model Cost Comparison</h4>
           <span class="badge high">Key Insight</span>
         </div>
         <p><strong>When to run:</strong> After Exercise 4 in Module 05 - see real AI credit cost per model from <code>CORTEX_AI_FUNCTIONS_USAGE_HISTORY</code>, not estimates.</p>
@@ -224,7 +193,7 @@ ORDER BY total_ai_credits DESC;</pre>
     <section class="section">
       <div class="panel">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-md);">
-          <h4 style="margin: 0;">Query 4: Hourly AI Spend Trend</h4>
+          <h4 style="margin: 0;">Query 3: Hourly AI Spend Trend</h4>
           <span class="badge medium">Pattern Analysis</span>
         </div>
         <p><strong>When to run:</strong> To identify usage patterns and anomalies - tracks real AI credits from the dedicated view, not cloud services overhead.</p>
@@ -254,7 +223,7 @@ ORDER BY 1 DESC, ai_credits DESC;</pre>
     <section class="section">
       <div class="panel">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-md);">
-          <h4 style="margin: 0;">Query 5: Cost Projection Query</h4>
+          <h4 style="margin: 0;">Query 4: Cost Projection Query</h4>
           <span class="badge high">Non-Negotiable</span>
         </div>
         <p><strong>When to run:</strong> <strong>BEFORE</strong> running any AI at scale. Use after Module 05 Exercise 5.</p>
@@ -378,11 +347,11 @@ FROM sample_cost;</pre>
       </div>
     </section>
 
-    <!-- ─── Query 6: Idle Cortex Search Detection ────────────────────────── -->
+    <!-- ─── Query 5: Idle Cortex Search Detection ────────────────────────── -->
     <section class="section" id="query-6">
       <div class="panel" style="border-left: 4px solid var(--sf-danger);">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-md);">
-          <h4 style="margin: 0;">Query 6: Idle Cortex Search Detection</h4>
+          <h4 style="margin: 0;">Query 5: Idle Cortex Search Detection</h4>
           <span class="badge high">Shadow Waste #4</span>
         </div>
         <p><strong>When to run:</strong> Weekly. Cortex Search services consume credits for <strong>serving</strong> (6.3 credits/GB/month) even with zero queries. Idle services = 100% waste.</p>
@@ -427,11 +396,11 @@ DROP CORTEX SEARCH SERVICE IF EXISTS my_abandoned_svc;    -- permanent removal</
       </div>
     </section>
 
-    <!-- ─── Query 7: Over-Sized Models ─────────────────────────────────────── -->
+    <!-- ─── Query 6: Over-Sized Models ─────────────────────────────────────── -->
     <section class="section">
       <div class="panel">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-md);">
-          <h4 style="margin: 0;">Query 7: Over-Sized Model Detection</h4>
+          <h4 style="margin: 0;">Query 6: Over-Sized Model Detection</h4>
           <span class="badge high">Shadow Waste #1</span>
         </div>
         <p><strong>When to run:</strong> Monthly - developers default to the most capable (expensive) model. Compare <code>credits_per_1M_tokens</code> across models to find where a cheaper model would suffice.</p>
@@ -463,11 +432,11 @@ ORDER  BY credits_per_1m_tokens DESC;</pre>
       </div>
     </section>
 
-    <!-- ─── Query 8: Redundant / Duplicate AI Calls ───────────────────────── -->
+    <!-- ─── Query 7: Redundant / Duplicate AI Calls ───────────────────────── -->
     <section class="section">
       <div class="panel">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-md);">
-          <h4 style="margin: 0;">Query 8: Redundant / Duplicate AI Calls</h4>
+          <h4 style="margin: 0;">Query 7: Redundant / Duplicate AI Calls</h4>
           <span class="badge high">Shadow Waste #2</span>
         </div>
         <p><strong>When to run:</strong> Weekly - pipelines re-processing unchanged rows every scheduled run, multiple users running overlapping queries. 10K rows hourly = same tokens 24x/day.</p>
@@ -497,11 +466,11 @@ ORDER  BY daily_credits DESC;</pre>
       </div>
     </section>
 
-    <!-- ─── Query 9: Verbose / Bloated Prompts ────────────────────────────── -->
+    <!-- ─── Query 8: Verbose / Bloated Prompts ────────────────────────────── -->
     <section class="section">
       <div class="panel">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-md);">
-          <h4 style="margin: 0;">Query 9: Verbose / Bloated Prompts</h4>
+          <h4 style="margin: 0;">Query 8: Verbose / Bloated Prompts</h4>
           <span class="badge medium">Shadow Waste #3</span>
         </div>
         <p><strong>When to run:</strong> Monthly - prompts with excessive instructions or entire documents when only a paragraph is relevant. 50-word filler x 100K rows = 12.3 credits wasted.</p>
@@ -532,11 +501,11 @@ ORDER  BY FUNCTION_NAME, week;</pre>
       </div>
     </section>
 
-    <!-- ─── Query 10: Uncontrolled Agent Loops ─────────────────────────────── -->
+    <!-- ─── Query 9: Uncontrolled Agent Loops ─────────────────────────────── -->
     <section class="section">
       <div class="panel" style="border-left: 4px solid var(--sf-danger);">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-md);">
-          <h4 style="margin: 0;">Query 10: Uncontrolled Agent Loops</h4>
+          <h4 style="margin: 0;">Query 9: Uncontrolled Agent Loops</h4>
           <span class="badge high">Shadow Waste #5</span>
         </div>
         <p><strong>When to run:</strong> Weekly - agents orchestrate multi-step tool calls. Without budgets, an agent can loop endlessly. Worst case: 100K+ tokens = 0.18+ credits per question.</p>
@@ -562,11 +531,11 @@ ORDER  BY day DESC;</pre>
       </div>
     </section>
 
-    <!-- ─── Query 11: Dev/Test in Production ───────────────────────────────── -->
+    <!-- ─── Query 10: Dev/Test in Production ───────────────────────────────── -->
     <section class="section">
       <div class="panel">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-md);">
-          <h4 style="margin: 0;">Query 11: Dev/Test in Production</h4>
+          <h4 style="margin: 0;">Query 10: Dev/Test in Production</h4>
           <span class="badge medium">Shadow Waste #6</span>
         </div>
         <p><strong>When to run:</strong> Monthly - developers experimenting with AI using production credentials. Notebooks, ad-hoc queries, prototypes consuming prod credits without business value.</p>
@@ -593,11 +562,11 @@ ORDER  BY total_credits DESC;</pre>
       </div>
     </section>
 
-    <!-- ─── Query 12: WoW Cost Anomaly Detection ──────────────────────────── -->
+    <!-- ─── Query 11: WoW Cost Anomaly Detection ──────────────────────────── -->
     <section class="section">
       <div class="panel" style="border-left: 4px solid var(--sf-danger);">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-md);">
-          <h4 style="margin: 0;">Query 12: Week-over-Week Cost Anomaly Detection</h4>
+          <h4 style="margin: 0;">Query 11: Week-over-Week Cost Anomaly Detection</h4>
           <span class="badge high">Shadow Waste #7</span>
         </div>
         <p><strong>When to run:</strong> Weekly - a code change or misconfigured schedule causes a spike. Unnoticed until the monthly bill. Example: WHERE clause change - 1K rows becomes 1M.</p>
@@ -635,11 +604,11 @@ ORDER  BY day DESC;</pre>
       </div>
     </section>
 
-    <!-- ─── Query 13: Missing Cost Attribution ─────────────────────────────── -->
+    <!-- ─── Query 12: Missing Cost Attribution ─────────────────────────────── -->
     <section class="section">
       <div class="panel">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-md);">
-          <h4 style="margin: 0;">Query 13: Missing Cost Attribution</h4>
+          <h4 style="margin: 0;">Query 12: Missing Cost Attribution</h4>
           <span class="badge medium">Shadow Waste #8</span>
         </div>
         <p><strong>When to run:</strong> Monthly - without tagging, AI costs = one aggregated number. Nobody knows which team/project/pipeline owns the spend. Can't charge back, can't optimize.</p>
@@ -697,7 +666,7 @@ GROUP  BY attribution;</pre>
         Module 05: AI SQL Hands-On
       </a>
       <a href="07-ai-credits-transition.html" class="nav-btn next">
-        Module 07: What's New
+        Module 07: Spend Controls
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <line x1="5" y1="12" x2="19" y2="12"/>
           <polyline points="12 5 19 12 12 19"/>
